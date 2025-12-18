@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About - Second Start Initiative</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --coastal-midnight: #0f1e2e;
+      --warm-ember: #c36a2d;
+      --deep-rouge: #7b1e2b;
+      --soft-ivory: #f7f7f5;
+      --charcoal: #1c1c1c;
+    }
+
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; color: var(--charcoal); line-height:1.7; background:white;}
+    a {text-decoration:none; color:inherit;}
+    img {max-width:100%; border-radius:6px;}
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top:0; width:100%; height:52px;
+      background: var(--coastal-midnight); color:white;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0 1rem; z-index:1000;
+    }
+    .brand {font-weight:600; font-size:0.95rem; letter-spacing:0.5px;}
+    .menu button {background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;}
+    .dropdown {
+      position:absolute; top:52px; right:1rem; background:white; color:var(--charcoal);
+      min-width:180px; border-radius:6px; box-shadow:0 8px 25px rgba(0,0,0,0.15);
+      display:none; overflow:hidden;
+    }
+    .dropdown a {display:block; padding:0.75rem 1rem; font-size:0.9rem; border-bottom:1px solid #eee;}
+    .dropdown a:hover {background: var(--soft-ivory);}
+    .dropdown .donate {background: var(--deep-rouge); color:white; font-weight:600; text-align:center;}
+    .dropdown.show {display:block;}
+
+    main {margin-top:52px;}
+    section {padding:4rem 1.5rem; max-width:1100px; margin:auto; opacity:0; transform: translateY(20px); transition: all 1s ease;}
+    section.visible {opacity:1; transform: translateY(0);}
+    h1,h2 {font-weight:600; color:var(--coastal-midnight); margin-bottom:1rem;}
+    h1 {font-size: clamp(2rem,5vw,3rem);}
+    h2 {font-size:1.6rem;}
+    p {max-width:700px; font-size:1rem; margin-bottom:1.5rem;}
+
+    .split {display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); align-items:center; gap:2.5rem; margin-bottom:4rem;}
+    .split-image img{border-radius:6px;}
+    .split-text p{font-size:1rem; max-width:600px;}
+
+    .values {display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:2rem; margin-top:2rem;}
+    .value-card {padding:1.5rem; background:var(--soft-ivory); border-left:4px solid var(--warm-ember); opacity:0; transform: translateY(20px); transition: all 1s ease;}
+    .value-card.visible {opacity:1; transform:translateY(0);}
+
+    footer {padding:2rem 1rem; text-align:center; font-size:0.8rem; background:#111; color:#aaa;}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="brand">Second Start Initiative</div>
+  <div class="menu">
+    <button id="menuBtn">⋮</button>
+    <div id="dropdown" class="dropdown">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="founders-story.html">Founder’s Story</a>
+      <a href="programs.html">Programs</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="donate.html" class="donate">Donate</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero visible" style="background:linear-gradient(rgba(15,30,46,0.7), rgba(15,30,46,0.7)), url('pic2.jpg'); background-size:cover; background-position:center; text-align:center; color:white; padding:6rem 1.5rem;">
+  <h1>About Second Start Initiative</h1>
+  <p>We are committed to empowering young adults transitioning from children's homes, helping them step confidently into independent, fulfilling lives.</p>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="split visible">
+  <div class="split-text">
+    <h2>Our Mission</h2>
+    <p>To empower young adults leaving children’s homes and orphanages by providing emotional, educational, and economic support that enables them to build independent, dignified, and fulfilling lives.</p>
+  </div>
+  <div class="split-image">
+    <img src="pic3.jpg" alt="Mission">
+  </div>
+</section>
+
+<section class="split muted visible">
+  <div class="split-image">
+    <img src="pic4.jpg" alt="Vision">
+  </div>
+  <div class="split-text">
+    <h2>Our Vision</h2>
+    <p>A society where every youth transitioning out of care has equal opportunities for stability, growth, and success.</p>
+  </div>
+</section>
+
+<!-- CORE VALUES -->
+<section class="visible">
+  <h2>Our Core Values</h2>
+  <div class="values">
+    <div class="value-card">Empathy</div>
+    <div class="value-card">Dignity</div>
+    <div class="value-card">Integrity</div>
+    <div class="value-card">Empowerment</div>
+    <div class="value-card">Community</div>
+    <div class="value-card">Sustainability</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © Second Start Initiative — Kenya | Cj 🖋️
+</footer>
+
+<script>
+  // MENU
+  const menuBtn = document.getElementById("menuBtn");
+  const dropdown = document.getElementById("dropdown");
+  menuBtn.addEventListener("click",()=>{dropdown.classList.toggle("show");});
+
+  // FADE-IN ON SCROLL
+  const sections = document.querySelectorAll("section");
+  const valueCards = document.querySelectorAll(".value-card");
+
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+        if(entry.target.querySelectorAll(".value-card").length){
+          entry.target.querySelectorAll(".value-card").forEach((v,i)=>{
+            setTimeout(()=>v.classList.add("visible"), i*150);
+          });
+        }
+      }
+    });
+  }, {threshold:0.2});
+
+  sections.forEach(s=>observer.observe(s));
+</script>
+
+</body>
+</html>

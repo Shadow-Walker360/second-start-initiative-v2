@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Volunteer - Second Start Initiative</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --coastal-midnight: #0f1e2e;
+      --warm-ember: #c36a2d;
+      --deep-rouge: #7b1e2b;
+      --soft-ivory: #f7f7f5;
+      --charcoal: #1c1c1c;
+    }
+
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; color: var(--charcoal); line-height:1.7; background:white;}
+    a {text-decoration:none; color:inherit;}
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top:0; width:100%; height:52px;
+      background: var(--coastal-midnight); color:white;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0 1rem; z-index:1000;
+    }
+    .brand {font-weight:600; font-size:0.95rem; letter-spacing:0.5px;}
+    .menu button {background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;}
+    .dropdown {
+      position:absolute; top:52px; right:1rem; background:white; color:var(--charcoal);
+      min-width:180px; border-radius:6px; box-shadow:0 8px 25px rgba(0,0,0,0.15);
+      display:none; overflow:hidden;
+    }
+    .dropdown a {display:block; padding:0.75rem 1rem; font-size:0.9rem; border-bottom:1px solid #eee;}
+    .dropdown a:hover {background: var(--soft-ivory);}
+    .dropdown .donate {background: var(--deep-rouge); color:white; font-weight:600; text-align:center;}
+    .dropdown.show {display:block;}
+
+    main {margin-top:52px; padding:2rem 1rem;}
+    h1,h2 {font-weight:600; color:var(--coastal-midnight); margin-bottom:1rem;}
+    h1 {font-size: clamp(2rem,5vw,3rem);}
+    h2 {font-size:1.6rem;}
+    p {font-size:1rem; margin-bottom:1rem;}
+
+    .form-container {background: var(--soft-ivory); padding:2rem; border-radius:6px; max-width:600px; margin:auto;}
+    .form-group {margin-bottom:1rem;}
+    .form-group label {display:block; margin-bottom:0.5rem; font-weight:600;}
+    .form-group input, .form-group textarea {width:100%; padding:0.6rem; border-radius:4px; border:1px solid #ccc;}
+    .form-group textarea {resize: vertical;}
+    .btn-submit {background:var(--warm-ember); color:white; border:none; padding:0.7rem 1.5rem; border-radius:4px; font-weight:600; cursor:pointer;}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="brand">Second Start Initiative</div>
+  <div class="menu">
+    <button id="menuBtn">⋮</button>
+    <div id="dropdown" class="dropdown">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="founders-story.html">Founder’s Story</a>
+      <a href="programs.html">Programs</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="donate.html" class="donate">Donate</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<section>
+  <h1>Volunteer With Us</h1>
+  <p>Join the Second Start Initiative and make a meaningful impact in the lives of young adults transitioning out of children’s homes. Fill out the form below to send a volunteer request via your email client.</p>
+
+  <div class="form-container">
+    <div class="form-group">
+      <label for="vname">Full Name</label>
+      <input type="text" id="vname" placeholder="Your full name">
+    </div>
+    <div class="form-group">
+      <label for="vemail">Email Address</label>
+      <input type="email" id="vemail" placeholder="you@example.com">
+    </div>
+    <div class="form-group">
+      <label for="vphone">Phone Number</label>
+      <input type="text" id="vphone" placeholder="+254 7XXXXXXXX">
+    </div>
+    <div class="form-group">
+      <label for="vinterest">Area of Interest</label>
+      <input type="text" id="vinterest" placeholder="Mentorship, Life Skills, Community Support...">
+    </div>
+    <div class="form-group">
+      <label for="vmessage">Why do you want to volunteer?</label>
+      <textarea id="vmessage" rows="4" placeholder="Tell us more"></textarea>
+    </div>
+    <button class="btn-submit" id="vsubmitBtn">Submit</button>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © Second Start Initiative — Kenya | Cj 🖋️
+</footer>
+
+<script>
+  // MENU
+  const menuBtn = document.getElementById("menuBtn");
+  const dropdown = document.getElementById("dropdown");
+  menuBtn.addEventListener("click",()=>{dropdown.classList.toggle("show");});
+
+  // FORM SUBMIT TO EMAIL
+  const vsubmitBtn = document.getElementById("vsubmitBtn");
+  vsubmitBtn.addEventListener("click",()=>{
+    const name = document.getElementById("vname").value.trim();
+    const email = document.getElementById("vemail").value.trim();
+    const phone = document.getElementById("vphone").value.trim();
+    const interest = document.getElementById("vinterest").value.trim();
+    const message = document.getElementById("vmessage").value.trim();
+
+    if(!name || !email){
+      alert("Please fill at least your name and email.");
+      return;
+    }
+
+    const subject = encodeURIComponent("Volunteer Request: Second Start Initiative");
+    const body = encodeURIComponent(
+      `Dear Second Start Initiative Team,\n\n` +
+      `My name is ${name}.\n` +
+      `Email: ${email}\n` +
+      `Phone: ${phone}\n` +
+      `Area of Interest: ${interest}\n\n` +
+      `${message}\n\n` +
+      `I would love to contribute my time and skills to support your mission.\n\n` +
+      `Sincerely,\n${name}`
+    );
+
+    // Opens user's email client
+    window.location.href = `mailto:info@secondstartinitiative.org?subject=${subject}&body=${body}`;
+  });
+</script>
+
+</body>
+</html>

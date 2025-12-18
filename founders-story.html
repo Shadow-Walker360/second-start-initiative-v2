@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Founder’s Story - Second Start Initiative</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+    Author: Cj
+    Project: Second Start Initiative Website
+    Page: Founder’s Story
+    Signature: Cj_🖋️
+  -->
+
+  <style>
+    :root {
+      --coastal-midnight: #0f1e2e;
+      --warm-ember: #c36a2d;
+      --deep-rouge: #7b1e2b;
+      --soft-ivory: #f7f7f5;
+      --charcoal: #1c1c1c;
+    }
+
+    *{margin:0; padding:0; box-sizing:border-box;}
+    body{font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif; color:var(--charcoal); line-height:1.7; background:white;}
+    a{text-decoration:none;color:inherit;}
+    img{display:block; max-width:100%; border-radius:6px;}
+
+    /* NAVBAR */
+    .navbar{
+      position:fixed; top:0; width:100%; height:52px;
+      background:var(--coastal-midnight); color:white;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0 1rem; z-index:1000;
+    }
+    .brand{font-weight:600; font-size:0.95rem; letter-spacing:0.5px;}
+    .menu button{background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;}
+    .dropdown{
+      position:absolute; top:52px; right:1rem; background:white; color:var(--charcoal);
+      min-width:180px; border-radius:6px; box-shadow:0 8px 25px rgba(0,0,0,0.15);
+      display:none; overflow:hidden;
+    }
+    .dropdown a{display:block; padding:0.75rem 1rem; font-size:0.9rem; border-bottom:1px solid #eee;}
+    .dropdown a:hover{background: var(--soft-ivory);}
+    .dropdown .donate{background: var(--deep-rouge); color:white; font-weight:600; text-align:center;}
+    .dropdown.show{display:block;}
+
+    main{margin-top:52px;}
+    section{padding:4rem 1.5rem; max-width:1100px; margin:auto;}
+    h1,h2{font-weight:600; color:var(--coastal-midnight); margin-bottom:1rem;}
+    h1{font-size: clamp(2rem,5vw,3rem);}
+    h2{font-size:1.6rem;}
+    p{max-width:700px; font-size:1rem; margin-bottom:1.5rem;}
+
+    /* HERO / VIDEO SECTION */
+    .hero{
+      position:relative; color:white; text-align:center; padding:6rem 1.5rem 5rem;
+      background-image: linear-gradient(rgba(15,30,46,0.75), rgba(15,30,46,0.75)), url("pic2.jpg");
+      background-size:cover; background-position:center; background-repeat:no-repeat;
+    }
+    .ribbon{display:inline-flex; align-items:center; gap:0.5rem; font-size:0.9rem; color:var(--warm-ember); margin-bottom:1.5rem;}
+    .hero p{margin-top:1rem; font-size:1rem;}
+    .hero-typing{margin-top:2rem; font-size:0.95rem; color:#e0e0e0; max-width:700px; margin-left:auto; margin-right:auto; opacity:0.9;}
+
+    /* STORY SECTION */
+    .story{
+      display:flex; flex-wrap:wrap; align-items:center; gap:2rem; margin-bottom:4rem;
+    }
+    .story img{flex:1 1 300px; border-radius:6px;}
+    .story-text{flex:2 1 400px;}
+
+    /* VIDEO EMBED */
+    .video-container{
+      position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:6px; margin-top:2rem;
+    }
+    .video-container iframe{
+      position:absolute; top:0; left:0; width:100%; height:100%;
+    }
+
+    /* FOOTER SIGNATURE */
+    footer{
+      text-align:center; padding:2rem 0; font-size:0.8rem; color:#999;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="brand">Second Start Initiative</div>
+  <div class="menu">
+    <button id="menuBtn">⋮</button>
+    <div id="dropdown" class="dropdown">
+      <a href="index.html">Home</a>
+      <a href="#">About</a>
+      <a href="#">Founder’s Story</a>
+      <a href="#">Programs</a>
+      <a href="#">Testimonials</a>
+      <a href="#" class="donate">Donate</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="ribbon"><span>❤</span><small>Founder’s Journey</small></div>
+  <h1>From Vision to Action</h1>
+  <p>Discover the story behind the creation of Second Start Initiative — why it exists, and the heart driving its mission.</p>
+  <div class="hero-typing"><p id="heroTyping"></p></div>
+</section>
+
+<!-- FOUNDER STORY -->
+<section class="story">
+  <img src="pic4.jpg" alt="Founder portrait">
+  <div class="story-text">
+    <h2>Our Founder</h2>
+    <p id="storyTyping"></p>
+    <!-- Optional video -->
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/XXXXXXXXXXX" title="Founder Video" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  &copy; 2025 Second Start Initiative | Cj 🖋️
+</footer>
+
+<script>
+  // MENU
+  const menuBtn=document.getElementById("menuBtn");
+  const dropdown=document.getElementById("dropdown");
+  menuBtn.addEventListener("click",()=>{dropdown.classList.toggle("show");});
+
+  // AUTO-TYPING
+  const heroTexts=[
+    "Mission: Empower young adults leaving children’s homes with emotional, educational, and economic support.",
+    "Vision: A society where every youth transitioning out of care has equal opportunities.",
+    "Motto: Everyone deserves a second start."
+  ];
+  const storyText="Collins Joshua founded Second Start Initiative driven by a vision to support youth transitioning from care. Having witnessed the challenges first-hand, he committed to creating opportunities for mentorship, skills development, and community. His journey is a testament to resilience, empathy, and actionable impact.";
+
+  function typeText(el,text,speed=35){let i=0;el.innerHTML="";const interval=setInterval(()=>{el.innerHTML+=text.charAt(i);i++;if(i>=text.length)clearInterval(interval);},speed);}
+
+  // HERO AUTO-TYPE LOOP
+  let heroIndex=0; const heroEl=document.getElementById("heroTyping");
+  function typeHero(){typeText(heroEl,heroTexts[heroIndex]); heroIndex=(heroIndex+1)%heroTexts.length; setTimeout(typeHero,3000+heroTexts[heroIndex].length*35);}
+  typeHero();
+
+  // STORY AUTO-TYPE
+  typeText(document.getElementById("storyTyping"),storyText);
+</script>
+
+</body>
+</html>

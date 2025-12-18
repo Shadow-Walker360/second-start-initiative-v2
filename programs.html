@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Programs | Second Start Initiative</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --coastal-midnight: #0f1e2e;
+      --warm-ember: #c36a2d;
+      --deep-rouge: #7b1e2b;
+      --soft-ivory: #f7f7f5;
+      --charcoal: #1c1c1c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; color: var(--charcoal); line-height: 1.7; background: white; }
+    a { text-decoration: none; color: inherit; }
+    img { width: 100%; border-radius: 6px; }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top: 0; width: 100%; height: 52px;
+      background: var(--coastal-midnight); color: white;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 1rem; z-index: 1000;
+    }
+    .brand { font-weight: 600; font-size: 0.95rem; letter-spacing: 0.5px; }
+    .menu button { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+    .dropdown {
+      position: absolute; top: 52px; right: 1rem; background: white; color: var(--charcoal);
+      min-width: 180px; border-radius: 6px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); display: none;
+    }
+    .dropdown a { padding: 0.75rem 1rem; display: block; font-size:0.9rem; border-bottom: 1px solid #eee; }
+    .dropdown a:hover { background: var(--soft-ivory); }
+    .dropdown .donate { background: var(--deep-rouge); color: white; font-weight: 600; text-align: center; }
+    .dropdown.show { display: block; }
+
+    main { margin-top: 52px; }
+    section { padding: 4rem 1.5rem; max-width: 1100px; margin: auto; }
+    h1, h2 { color: var(--coastal-midnight); font-weight: 600; margin-bottom: 1rem; }
+    h1 { font-size: clamp(2rem,5vw,3rem); }
+    h2 { font-size: 1.6rem; }
+    p { font-size: 1rem; max-width: 700px; margin-bottom: 1.2rem; }
+
+    /* PROGRAM BLOCKS */
+    .program {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    .program:nth-child(even) { grid-template-columns: 3fr 2fr; }
+    .program h3 { color: var(--warm-ember); font-size:1.4rem; margin-bottom: 0.8rem; }
+    .program p { margin-bottom: 0.6rem; }
+
+    @media (max-width: 768px) {
+      .program { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="brand">Second Start Initiative</div>
+  <div class="menu">
+    <button id="menuBtn">⋮</button>
+    <div id="dropdown" class="dropdown">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="founders-story.html">Founder’s Story</a>
+      <a href="#">Programs</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="#" class="donate">Donate</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO FOR PROGRAMS -->
+<section style="text-align:center; padding-top:6rem; padding-bottom:2rem;">
+  <h1>Our Programs</h1>
+  <p>Each initiative under Second Start Initiative is built around dignity, skill, and opportunity.</p>
+</section>
+
+<!-- PROGRAM: Transitional Support -->
+<section class="program">
+  <div>
+    <img src="pic13.jpg" alt="Transitional Support">
+  </div>
+  <div>
+    <h3>Transitional Support & Stability</h3>
+    <p>We walk alongside young adults as they transition from institutional care to independence — offering housing support, life skills workshops, and emotional guidance every step of the way.</p>
+    <p>This program includes safe transitional housing, personal development planning, structured case management, and dedicated peer mentorship to build stability and confidence in the journey ahead.</p>
+  </div>
+</section>
+
+<!-- PROGRAM: Mentorship -->
+<section class="program">
+  <div>
+    <p> <!-- spacer - image on right for even section -->
+    </p>
+  </div>
+  <div>
+    <h3>Mentorship & Personal Growth</h3>
+    <p>Through one-on-one and group mentorship, participants develop confidence, life strategies, and skills that help them thrive beyond transitional support.</p>
+    <p>Guided by trained mentors who offer personalized support on leadership, career pathways, decision-making, and resilience, this program cultivates not just independence but life ownership.</p>
+  </div>
+  <div>
+    <img src="pic14.jpg" alt="Mentorship Session">
+  </div>
+</section>
+
+<!-- PROGRAM: Skills & Career Development -->
+<section class="program">
+  <div>
+    <img src="pic11.jpg" alt="Skills & Career Development">
+  </div>
+  <div>
+    <h3>Skills & Career Development</h3>
+    <p>Participants access workshops, vocational training, internship placements, and career guidance to build competencies that lead to sustainable employment.</p>
+    <p>Training areas include digital literacy, entrepreneurship basics, workplace etiquette, and partnerships with local employers — helping youth transition from learning to earning.</p>
+    <small>Image representing youth empowerment and career readiness. :contentReference[oaicite:1]{index=1}</small>
+  </div>
+</section>
+
+<!-- PROGRAM: Entrepreneurship Support -->
+<section class="program">
+  <div></div>
+  <div>
+    <h3>Entrepreneurship & Economic Empowerment</h3>
+    <p>Building on skills training, this program supports young people to start, manage, and scale their own ventures.</p>
+    <p>Through business planning guidance, startup mentorship, access to local markets, and foundational financial education, participants transform ideas into livelihoods.</p>
+    <small>Image reflecting youth entrepreneurship empowerment. :contentReference[oaicite:2]{index=2}</small>
+  </div>
+  <div>
+    <img src="pic10.jpg" alt="Entrepreneurship Training">
+  </div>
+</section>
+
+</main>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const dropdown = document.getElementById("dropdown");
+  menuBtn.addEventListener("click", () => {
+    dropdown.classList.toggle("show");
+  });
+</script>
+
+</body>
+</html>

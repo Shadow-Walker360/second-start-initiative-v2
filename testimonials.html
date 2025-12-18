@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Testimonials - Second Start Initiative</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --coastal-midnight: #0f1e2e;
+      --warm-ember: #c36a2d;
+      --deep-rouge: #7b1e2b;
+      --soft-ivory: #f7f7f5;
+      --charcoal: #1c1c1c;
+    }
+
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; color: var(--charcoal); line-height:1.7; background:white;}
+    a {text-decoration:none; color:inherit;}
+    
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top:0; width:100%; height:52px;
+      background: var(--coastal-midnight); color:white;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0 1rem; z-index:1000;
+    }
+    .brand {font-weight:600; font-size:0.95rem; letter-spacing:0.5px;}
+    .menu button {background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;}
+    .dropdown {
+      position:absolute; top:52px; right:1rem; background:white; color:var(--charcoal);
+      min-width:180px; border-radius:6px; box-shadow:0 8px 25px rgba(0,0,0,0.15);
+      display:none; overflow:hidden;
+    }
+    .dropdown a {display:block; padding:0.75rem 1rem; font-size:0.9rem; border-bottom:1px solid #eee;}
+    .dropdown a:hover {background: var(--soft-ivory);}
+    .dropdown .donate {background: var(--deep-rouge); color:white; font-weight:600; text-align:center;}
+    .dropdown.show {display:block;}
+
+    main {margin-top:52px; padding:2rem 1rem;}
+    h1,h2 {font-weight:600; color:var(--coastal-midnight); margin-bottom:1rem;}
+    h1 {font-size: clamp(2rem,5vw,3rem);}
+    h2 {font-size:1.6rem;}
+    p {font-size:1rem; margin-bottom:1rem;}
+
+    /* TESTIMONIALS */
+    .testimonial-container {
+      max-width:1100px; margin:auto; overflow:hidden; position:relative;
+    }
+    .testimonial-stack {
+      display:flex; gap:2rem; transition: transform 0.6s ease;
+    }
+    .testimonial-card {
+      flex: 0 0 30%;
+      background: var(--soft-ivory);
+      border-left: 4px solid var(--warm-ember);
+      padding:1.5rem;
+      border-radius:6px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.05);
+    }
+    .testimonial-card img {width:60px; height:60px; border-radius:50%; margin-bottom:0.75rem;}
+
+    .controls {
+      text-align:center; margin-top:2rem;
+    }
+    .btn {background:var(--warm-ember); color:white; border:none; padding:0.6rem 1.2rem; border-radius:4px; font-weight:600; cursor:pointer; margin:0 0.5rem;}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="brand">Second Start Initiative</div>
+  <div class="menu">
+    <button id="menuBtn">⋮</button>
+    <div id="dropdown" class="dropdown">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="founders-story.html">Founder’s Story</a>
+      <a href="programs.html">Programs</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="donate.html" class="donate">Donate</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="visible">
+    <h1>What People Are Saying</h1>
+    <div class="testimonial-container">
+      <div id="testimonialStack" class="testimonial-stack">
+        <!-- Cards will be inserted here dynamically -->
+      </div>
+      <div class="controls">
+        <button id="prevBtn" class="btn">‹</button>
+        <button id="nextBtn" class="btn">›</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © Second Start Initiative — Kenya | Cj 🖋️
+</footer>
+
+<script>
+  // MENU
+  const menuBtn = document.getElementById("menuBtn");
+  const dropdown = document.getElementById("dropdown");
+  menuBtn.addEventListener("click",()=>{dropdown.classList.toggle("show");});
+
+  // TESTIMONIAL DATA
+  const testimonials = [
+    {name:"Alice K.", photo:"pic7.jpg", text:"Volunteering here changed my perspective. I feel I truly contribute."},
+    {name:"David M.", photo:"pic8.jpg", text:"The mentorship program is incredibly impactful for the youths."},
+    {name:"Sarah N.", photo:"pic9.jpg", text:"I’ve met inspiring people and learned so much while helping."},
+    {name:"James L.", photo:"pic10.jpg", text:"Seeing these young adults thrive is the most rewarding experience."},
+    {name:"Ruth W.", photo:"pic11.jpg", text:"I love being part of a cause that genuinely makes a difference."},
+    {name:"Michael T.", photo:"pic12.jpg", text:"The team is amazing and organized; volunteering feels smooth and meaningful."},
+    {name:"Nia P.", photo:"pic13.jpg", text:"It’s heartwarming to witness growth and confidence in the youth."},
+    {name:"Paul O.", photo:"pic14.jpg", text:"Every visit motivates me to continue giving back."},
+    {name:"Grace S.", photo:"pic1.jpg", text:"This initiative provides hope where it’s needed most."},
+    {name:"Liam K.", photo:"pic2.jpg", text:"I can see real change happening every day."},
+    {name:"Fatima R.", photo:"pic3.jpg", text:"The mentorship and life skills programs are outstanding."},
+    {name:"John C.", photo:"pic4.jpg", text:"It’s fulfilling to help young adults achieve independence."},
+    {name:"Mary A.", photo:"pic5.jpg", text:"Volunteering here has inspired me to pursue more service work."},
+    {name:"Kevin H.", photo:"pic6.jpg", text:"Being part of SSI is rewarding and life-changing."},
+    {name:"Sophia D.", photo:"pic7.jpg", text:"I love seeing the joy on the youth’s faces when they succeed."},
+    {name:"Rachel B.", photo:"pic8.jpg", text:"Every moment spent volunteering is valuable and fulfilling."},
+    {name:"Daniel F.", photo:"pic9.jpg", text:"The organization is professional, and the impact is real."},
+    {name:"Olivia J.", photo:"pic10.jpg", text:"Volunteering has made me more empathetic and patient."},
+    {name:"Tommy Q.", photo:"pic11.jpg", text:"I’m proud to contribute to a cause that truly matters."},
+    {name:"Elena V.", photo:"pic12.jpg", text:"I feel connected and purposeful through my volunteer work."},
+    {name:"Simon W.", photo:"pic13.jpg", text:"SSI transforms lives, and I’m honored to be part of it."}
+  ];
+
+  const stackSize = 3;
+  let currentIndex = 0;
+  const stackEl = document.getElementById("testimonialStack");
+
+  function renderStack() {
+    stackEl.innerHTML = "";
+    for(let i=0;i<stackSize;i++){
+      const tIndex = (currentIndex + i) % testimonials.length;
+      const t = testimonials[tIndex];
+      const card = document.createElement("div");
+      card.className = "testimonial-card";
+      card.innerHTML = `<img src="${t.photo}" alt="${t.name}"><h3>${t.name}</h3><p>${t.text}</p>`;
+      stackEl.appendChild(card);
+    }
+  }
+
+  document.getElementById("nextBtn").addEventListener("click",()=>{
+    currentIndex = (currentIndex + stackSize) % testimonials.length;
+    renderStack();
+  });
+
+  document.getElementById("prevBtn").addEventListener("click",()=>{
+    currentIndex = (currentIndex - stackSize + testimonials.length) % testimonials.length;
+    renderStack();
+  });
+
+  renderStack();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Second Start Initiative</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --coastal-midnight: #0f1e2e;
+      --warm-ember: #c36a2d;
+      --deep-rouge: #7b1e2b;
+      --soft-ivory: #f7f7f5;
+      --charcoal: #1c1c1c;
+    }
+
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; color: var(--charcoal); line-height:1.7; background:white;}
+    a {text-decoration:none; color:inherit;}
+    img {display:block; max-width:100%; border-radius:6px;}
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed; top:0; width:100%; height:52px;
+      background: var(--coastal-midnight); color:white;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0 1rem; z-index:1000;
+    }
+    .brand {font-weight:600; font-size:0.95rem; letter-spacing:0.5px;}
+    .menu button {background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;}
+    .dropdown {
+      position:absolute; top:52px; right:1rem; background:white; color:var(--charcoal);
+      min-width:180px; border-radius:6px; box-shadow:0 8px 25px rgba(0,0,0,0.15);
+      display:none; overflow:hidden;
+    }
+    .dropdown a {display:block; padding:0.75rem 1rem; font-size:0.9rem; border-bottom:1px solid #eee;}
+    .dropdown a:hover {background: var(--soft-ivory);}
+    .dropdown .donate {background: var(--deep-rouge); color:white; font-weight:600; text-align:center;}
+    .dropdown.show {display:block;}
+
+    main {margin-top:52px;}
+    section {padding:4rem 1.5rem; max-width:1100px; margin:auto; opacity:0; transform: translateY(20px); transition: all 1s ease;}
+    section.visible {opacity:1; transform: translateY(0);}
+    h1,h2 {font-weight:600; color:var(--coastal-midnight); margin-bottom:1rem;}
+    h1 {font-size: clamp(2rem,5vw,3rem);}
+    h2 {font-size:1.6rem;}
+    p {max-width:700px; font-size:1rem; margin-bottom:1.5rem;}
+
+    /* HERO */
+    .hero {
+      position:relative; color:white; text-align:center; padding:7rem 1.5rem 6rem;
+      background-image: linear-gradient(rgba(15,30,46,0.75), rgba(15,30,46,0.75)), url("pic1.jpg");
+      background-size:cover; background-position:center; background-repeat:no-repeat;
+    }
+    .ribbon {display:inline-flex; align-items:center; gap:0.5rem; font-size:0.9rem; color:var(--warm-ember); margin-bottom:1.5rem;}
+    .hero-actions {display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;}
+    .btn {padding:0.7rem 1.5rem; border-radius:4px; font-size:0.9rem; font-weight:600; cursor:pointer; border:none;}
+    .btn-primary {background:var(--warm-ember); color:white;}
+    .btn-secondary {background:transparent; color:white; border:1px solid rgba(255,255,255,0.4);}
+    .hero-typing {margin-top:3rem; font-size:0.95rem; color:#e0e0e0; max-width:700px; margin-left:auto; margin-right:auto; opacity:0.9;}
+
+    /* SPLIT SECTIONS */
+    .split {display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); align-items:center; gap:2.5rem; margin-bottom:4rem;}
+    .split-image img{border-radius:6px;}
+    .split-text p{font-size:1rem; max-width:600px;}
+
+    /* MUTED BACKGROUND */
+    .muted {background:var(--soft-ivory); padding:4rem 1.5rem;}
+
+    /* PROGRAMS */
+    .programs {display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:2rem; margin-top:2.5rem;}
+    .program {padding:1.5rem; border-left:4px solid var(--warm-ember); background:white; opacity:0; transform: translateY(20px); transition: all 1s ease;}
+    .program.visible {opacity:1; transform:translateY(0);}
+
+    /* CTA */
+    .cta {text-align:center; background:var(--coastal-midnight); color:white; padding:4rem 1.5rem;}
+    .cta p{margin:1.5rem auto 2.5rem; color:#d6d6d6;}
+
+    /* FOOTER */
+    footer {padding:2rem 1rem; text-align:center; font-size:0.8rem; background:#111; color:#aaa;}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="brand">Second Start Initiative</div>
+  <div class="menu">
+    <button id="menuBtn">⋮</button>
+    <div id="dropdown" class="dropdown">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="founders-story.html">Founder’s Story</a>
+      <a href="programs.html">Programs</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="get-involved.html">Get Invloved</a>
+      <a href="donate.html" class="donate">Donate</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero visible">
+  <div class="ribbon"><span>❤</span><small>Compassion in action</small></div>
+  <h1>Everyone deserves a second start.</h1>
+  <p>We support young adults transitioning out of children’s homes with guidance, opportunity, and dignity — so they don’t have to face adulthood alone.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="volunteer.html">Get Involved</a>
+    <a class="btn btn-secondary" href="about.html">Learn More</a>
+  </div>
+  <div class="hero-typing"><p id="heroTyping"></p></div>
+</section>
+
+<!-- CHALLENGE -->
+<section class="split visible">
+  <div class="split-image">
+    <img src="pic6.jpg" alt="Challenges faced">
+  </div>
+  <div class="split-text">
+    <h2>The Challenge</h2>
+    <p id="challengeTyping"></p>
+  </div>
+</section>
+
+<!-- RESPONSE -->
+<section class="split muted visible">
+  <div class="split-text">
+    <h2>Our Response</h2>
+    <p id="responseTyping"></p>
+  </div>
+  <div class="split-image">
+    <img src="pic9.jpg" alt="Our response">
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section>
+  <h2>What We Do</h2>
+  <div class="programs">
+    <div class="program"><h3>Mentorship</h3><p>Trusted guidance from people who care and listen.</p></div>
+    <div class="program"><h3>Life Skills</h3><p>Financial literacy, communication, and independence.</p></div>
+    <div class="program"><h3>Education & Work</h3><p>Support for training, education, and employment pathways.</p></div>
+    <div class="program"><h3>Community</h3><p>A sense of belonging beyond institutional care.</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta visible">
+  <h2>Be part of someone’s second start</h2>
+  <p>Whether through mentorship, partnership, or support, your involvement can change a life.</p>
+  <img src="pic12.jpg" alt="Hope and new beginnings">
+  <a href="volunteer.html" class="btn btn-primary">Get Involved</a>
+</section>
+
+</main>
+
+<footer>
+  © Second Start Initiative — Kenya | Cj 🖋️
+</footer>
+
+<script>
+  // MENU
+  const menuBtn = document.getElementById("menuBtn");
+  const dropdown = document.getElementById("dropdown");
+  menuBtn.addEventListener("click",()=>{dropdown.classList.toggle("show");});
+
+  // AUTO-TYPING
+  const texts = {
+    hero:[
+      "Mission: Empower young adults leaving children’s homes with emotional, educational, and economic support.",
+      "Vision: A society where every youth transitioning out of care has equal opportunities.",
+      "Motto: Everyone deserves a second start."
+    ],
+    challenge:"Each year, young adults age out of children’s homes without family support, financial stability, or guidance. Many face homelessness, unemployment, and isolation at the most critical stage of life.",
+    response:"Second Start Initiative walks alongside these young adults, providing mentorship, life skills, education pathways, and community — so no one has to face adulthood alone."
+  };
+
+  function typeText(el,text,speed=35){let i=0;el.innerHTML="";const interval=setInterval(()=>{el.innerHTML+=text.charAt(i);i++;if(i>=text.length)clearInterval(interval);},speed);}
+
+  let heroIndex=0; const heroEl=document.getElementById("heroTyping");
+  function typeHero(){typeText(heroEl,texts.hero[heroIndex]); heroIndex=(heroIndex+1)%texts.hero.length; setTimeout(typeHero,3000+texts.hero[heroIndex].length*35);}
+  typeHero();
+
+  typeText(document.getElementById("challengeTyping"),texts.challenge);
+  typeText(document.getElementById("responseTyping"),texts.response);
+
+  // FADE-IN ANIMATIONS ON SCROLL
+  const sections = document.querySelectorAll("section");
+  const programs = document.querySelectorAll(".program");
+
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+        if(entry.target.querySelectorAll(".program").length){
+          entry.target.querySelectorAll(".program").forEach((p,i)=>{
+            setTimeout(()=>p.classList.add("visible"), i*200);
+          });
+        }
+      }
+    });
+  }, {threshold:0.2});
+
+  sections.forEach(s=>observer.observe(s));
+</script>
+
+</body>
+</html>
