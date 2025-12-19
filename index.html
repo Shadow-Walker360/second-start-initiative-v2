@@ -49,15 +49,30 @@
     /* HERO */
     .hero {
       position:relative; color:white; text-align:center; padding:7rem 1.5rem 6rem;
-      background-image: linear-gradient(rgba(15,30,46,0.75), rgba(15,30,46,0.75)), url("pic1.jpg");
+      background-image: linear-gradient(rgba(188, 205, 224, 0.75), rgba(15,30,46,0.75)), url("pic1.jpg");
       background-size:cover; background-position:center; background-repeat:no-repeat;
     }
+
+    .hero h1 span {
+    background: linear-gradient(
+    90deg,
+    #f4efe4,   /* ivory sand */
+    #d7ff4a,   /* lime lemon */
+    #2b1e2f,   /* coral blush */
+    #ff6f61,   /* coral blush */
+    #7b1e2b    /* crimson wine */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
     .ribbon {display:inline-flex; align-items:center; gap:0.5rem; font-size:0.9rem; color:var(--warm-ember); margin-bottom:1.5rem;}
     .hero-actions {display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;}
     .btn {padding:0.7rem 1.5rem; border-radius:4px; font-size:0.9rem; font-weight:600; cursor:pointer; border:none;}
     .btn-primary {background:var(--warm-ember); color:white;}
     .btn-secondary {background:transparent; color:white; border:1px solid rgba(255,255,255,0.4);}
-    .hero-typing {margin-top:3rem; font-size:0.95rem; color:#e0e0e0; max-width:700px; margin-left:auto; margin-right:auto; opacity:0.9;}
+    .hero-typing {margin-top:3rem; font-size:0.95rem; color:#e0e0e0; max-width:700px; margin-left:auto; margin-right:auto; opacity:0.9; font-style:italic; text-align: center;}
 
     /* SPLIT SECTIONS */
     .split {display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); align-items:center; gap:2.5rem; margin-bottom:4rem;}
@@ -105,7 +120,7 @@
 <!-- HERO -->
 <section class="hero visible">
   <div class="ribbon"><span>❤</span><small>Compassion in action</small></div>
-  <h1>Everyone deserves a second start.</h1>
+  <h1>Everyone<span>deserves a</span> <span>second start</span>.</h1>
   <p>We support young adults transitioning out of children’s homes with guidance, opportunity, and dignity — so they don’t have to face adulthood alone.</p>
   <div class="hero-actions">
     <a class="btn btn-primary" href="volunteer.html">Get Involved</a>
@@ -158,8 +173,27 @@
 </main>
 
 <footer>
-  © Second Start Initiative — Kenya | Cj 🖋️
+  <div style="margin-bottom:0.8rem;">
+    <strong>Second Start Initiative</strong> — Kenya
+  </div>
+
+  <div style="margin-bottom:0.8rem;">
+    <a href="https://wa.me/254701401306" target="_blank" rel="noopener">WhatsApp: +254 701 401 306</a> |
+    <a href="mailto:second.start.initiative@gmail.com">second.start.initiative@gmail.com</a>
+  </div>
+
+  <div style="margin-bottom:0.8rem;">
+    <a href="#" target="_blank">Instagram</a> ·
+    <a href="#" target="_blank">X (Twitter)</a> ·
+    <a href="#" target="_blank">Facebook</a>
+    <span style="opacity:0.8;">(@secondstartinitiative)</span>
+  </div>
+
+  <div style="font-size:0.75rem; opacity:0.7;">
+    © 2025 Second Start Initiative • Built with purpose
+  </div>
 </footer>
+
 
 <script>
   // MENU

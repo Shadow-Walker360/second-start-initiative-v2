@@ -26,6 +26,8 @@ nav .menu button {background:none; border:none; color:white; font-size:1.5rem; c
 nav .dropdown {position:absolute; top:52px; right:1rem; background:white; color:var(--charcoal); min-width:180px; border-radius:6px; display:none; box-shadow:0 8px 20px var(--shadow);}
 nav .dropdown a {display:block; padding:0.75rem 1rem; border-bottom:1px solid #eee; transition: background 0.2s;}
 nav .dropdown a:hover {background: var(--soft-ivory);}
+/* Moved inline style: make the donate link visually prominent */
+nav .dropdown a.active {font-weight:600;}
 nav .dropdown.show {display:block;}
 
 main {margin-top:60px; padding:2rem 1.5rem; max-width:900px; margin:auto;}
@@ -59,8 +61,6 @@ input {padding:0.6rem; margin:0.4rem 0; width:100%; max-width:250px; border:1px 
 <body>
 
 <!-- NAVBAR -->
-<nav>
-  <div class="brand">Second Start Initiative</div>
   <div class="menu">
     <button id="menuBtn">⋮</button>
     <div id="dropdown" class="dropdown">
@@ -70,7 +70,10 @@ input {padding:0.6rem; margin:0.4rem 0; width:100%; max-width:250px; border:1px 
       <a href="programs.html">Programs</a>
       <a href="testimonials.html">Testimonials</a>
       <a href="get-involved.html">Get Involved</a>
-      <a href="donate.html" style="font-weight:600;">Donate</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="donate.html" class="active">Donate</a>
+    </div>
+  </div>
     </div>
   </div>
 </nav>
@@ -101,6 +104,29 @@ input {padding:0.6rem; margin:0.4rem 0; width:100%; max-width:250px; border:1px 
     </div>
   </div>
 </main>
+
+<footer>
+  <div style="margin-bottom:0.8rem;">
+    <strong>Second Start Initiative</strong> — Kenya
+  </div>
+
+  <div style="margin-bottom:0.8rem;">
+    <a href="https://wa.me/254701401306" target="_blank" rel="noopener">WhatsApp: +254 701 401 306</a> |
+    <a href="mailto:second.start.initiative@gmail.com">second.start.initiative@gmail.com</a>
+  </div>
+
+  <div style="margin-bottom:0.8rem;">
+    <a href="#" target="_blank">Instagram</a> ·
+    <a href="#" target="_blank">X (Twitter)</a> ·
+    <a href="#" target="_blank">Facebook</a>
+    <span style="opacity:0.8;">(@secondstartinitiative)</span>
+  </div>
+
+  <div style="font-size:0.75rem; opacity:0.7;">
+    © 2025 Second Start Initiative • Built with purpose
+  </div>
+</footer>
+
 
 <script>
   // Dropdown menu

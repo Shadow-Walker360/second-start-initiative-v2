@@ -26,6 +26,19 @@
       display:flex; justify-content:space-between; align-items:center;
       padding:0 1rem; z-index:1000;
     }
+      .hero h1 span {
+    background: linear-gradient(
+    90deg,
+    #f4efe4,   /* ivory sand */
+    #d7ff4a,   /* lime lemon */
+    #2b1e2f,   /* coral blush */
+    #ff6f61,   /* coral blush */
+    #7b1e2b    /* crimson wine */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
     .brand {font-weight:600; font-size:0.95rem; letter-spacing:0.5px;}
     .menu button {background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;}
     .dropdown {
@@ -70,6 +83,7 @@
       <a href="founders-story.html">Founder’s Story</a>
       <a href="programs.html">Programs</a>
       <a href="testimonials.html">Testimonials</a>
+      <a href="volunteer.html">Volunteer</a>
       <a href="donate.html" class="donate">Donate</a>
     </div>
   </div>
@@ -79,7 +93,7 @@
 
 <!-- HERO -->
 <section class="hero visible" style="background:linear-gradient(rgba(15,30,46,0.7), rgba(15,30,46,0.7)), url('pic2.jpg'); background-size:cover; background-position:center; text-align:center; color:white; padding:6rem 1.5rem;">
-  <h1>About Second Start Initiative</h1>
+  <h1><span>About</span> <span>Second Start Initiative</span></h1>
   <p>We are committed to empowering young adults transitioning from children's homes, helping them step confidently into independent, fulfilling lives.</p>
 </section>
 
@@ -120,8 +134,27 @@
 </main>
 
 <footer>
-  © Second Start Initiative — Kenya | Cj 🖋️
+  <div style="margin-bottom:0.8rem;">
+    <strong>Second Start Initiative</strong> — Kenya
+  </div>
+
+  <div style="margin-bottom:0.8rem;">
+    <a href="https://wa.me/254701401306" target="_blank" rel="noopener">WhatsApp: +254 701 401 306</a> |
+    <a href="mailto:second.start.initiative@gmail.com">second.start.initiative@gmail.com</a>
+  </div>
+
+  <div style="margin-bottom:0.8rem;">
+    <a href="#" target="_blank">Instagram</a> ·
+    <a href="#" target="_blank">X (Twitter)</a> ·
+    <a href="#" target="_blank">Facebook</a>
+    <span style="opacity:0.8;">(@secondstartinitiative)</span>
+  </div>
+
+  <div style="font-size:0.75rem; opacity:0.7;">
+    © 2025 Second Start Initiative • Built with purpose
+  </div>
 </footer>
+
 
 <script>
   // MENU
