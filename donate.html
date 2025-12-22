@@ -3,185 +3,417 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Donate - Second Start Initiative</title>
+<title>Donate | Second Start Initiative</title>
 
 <style>
-:root {
-  --coastal-midnight: #0f1e2e;
-  --warm-ember: #c36a2d;
-  --deep-rouge: #7b1e2b;
-  --soft-ivory: #f7f7f5;
-  --charcoal: #1c1c1c;
-  --shadow: rgba(0,0,0,0.15);
+/* =========================
+   THEME SYSTEM
+========================= */
+:root{
+  --amber-grey:#6E6E6E;
+  --ivory-coast:#FAF9F6;
+  --crimson-wine:#7A1E2D;
+  --orange-lime:#C97B00;
+  --copper-gold:#B87333;
+
+  --theme-accent:var(--copper-gold);
+  --border:#E3E3E3;
+  --text:#2B2B2B;
 }
 
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; color: var(--charcoal); background: var(--soft-ivory);}
-a {text-decoration:none; color:inherit;}
-img {display:block; max-width:100%; transition: transform 0.3s;}
-img:hover {transform: scale(1.05);}
-nav {position:fixed; top:0; width:100%; height:52px; background: var(--coastal-midnight); color:white; display:flex; justify-content:space-between; align-items:center; padding:0 1rem; z-index:1000; box-shadow:0 2px 6px var(--shadow);}
-nav .brand {font-weight:600;}
-nav .menu button {background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;}
-nav .dropdown {position:absolute; top:52px; right:1rem; background:white; color:var(--charcoal); min-width:180px; border-radius:6px; display:none; box-shadow:0 8px 20px var(--shadow);}
-nav .dropdown a {display:block; padding:0.75rem 1rem; border-bottom:1px solid #eee; transition: background 0.2s;}
-nav .dropdown a:hover {background: var(--soft-ivory);}
-/* Moved inline style: make the donate link visually prominent */
-nav .dropdown a.active {font-weight:600;}
-nav .dropdown.show {display:block;}
-
-main {margin-top:60px; padding:2rem 1.5rem; max-width:900px; margin:auto;}
-h1,h2{color:var(--coastal-midnight);}
-h1{margin-bottom:1rem; font-size:2.4rem; text-align:center; animation: fadeInDown 1s;}
-h2{margin-top:1rem;}
-p{margin-bottom:1rem; line-height:1.6;}
-
-.section {padding:3rem 1rem; border-radius:12px; background:white; margin-bottom:2rem; display:flex; align-items:center; gap:1.5rem; box-shadow:0 4px 12px var(--shadow); transform: translateY(50px); opacity:0; animation: fadeUp 0.8s forwards;}
-.section:nth-child(1) {animation-delay:0.2s;}
-.section:nth-child(2) {animation-delay:0.4s;}
-
-input {padding:0.6rem; margin:0.4rem 0; width:100%; max-width:250px; border:1px solid #ccc; border-radius:6px;}
-.btn {padding:0.6rem 1.2rem; border:none; border-radius:6px; cursor:pointer; font-weight:600; transition: all 0.3s;}
-.btn-paypal {background:#003087; color:white;}
-.btn-paypal:hover {background:#002060; transform: scale(1.05);}
-.btn-mpesa {background:#4CAF50; color:white;}
-.btn-mpesa:hover {background:#3e8e41; transform: scale(1.05);}
-
-/* Animations */
-@keyframes fadeUp {
-  to {opacity:1; transform: translateY(0);}
-}
-@keyframes fadeInDown {
-  from {opacity:0; transform: translateY(-20px);}
-  to {opacity:1; transform: translateY(0);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,system-ui,sans-serif;
+  background:var(--ivory-coast);
+  color:var(--text);
+  line-height:1.6;
 }
 
+/* =========================
+   LAYOUT
+========================= */
+header{
+  background:#fff;
+  padding:24px;
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:var(--copper-gold);
+}
+.hero{
+  background:linear-gradient(135deg,var(--amber-grey),var(--copper-gold));
+  color:#fff;
+  padding:90px 24px;
+  text-align:center;
+}
+.hero h1{font-size:44px;margin-bottom:10px}
+
+.main{
+  max-width:1200px;
+  margin:70px auto;
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:40px;
+  padding:0 24px;
+}
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+
+/* =========================
+   TABS
+========================= */
+.tabs{
+  display:flex;
+  border-bottom:1px solid var(--border);
+}
+.tab-btn{
+  flex:1;
+  padding:16px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  color:var(--amber-grey);
+}
+.tab-btn.active{
+  color:var(--theme-accent);
+  border-bottom:3px solid var(--theme-accent);
+}
+
+/* =========================
+   CONTENT
+========================= */
+.content{padding:36px}
+.panel{display:none}
+.panel.active{display:block}
+
+.alert{
+  background:#F1EFEA;
+  border-left:4px solid var(--theme-accent);
+  padding:14px;
+  border-radius:8px;
+  font-size:14px;
+  margin-bottom:24px;
+}
+
+.section{margin-bottom:28px}
+label{font-size:14px;font-weight:500;display:block;margin-bottom:6px}
+
+input,select{
+  width:100%;
+  padding:12px 14px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  font-size:15px;
+}
+input:focus,select:focus{
+  outline:none;
+  border-color:var(--theme-accent);
+  box-shadow:0 0 0 3px rgba(184,115,51,.15);
+}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* =========================
+   METHOD CARDS
+========================= */
+.methods{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:14px;
+}
+.method{
+  padding:18px;
+  border:2px solid var(--border);
+  border-radius:10px;
+  text-align:center;
+  cursor:pointer;
+  font-weight:600;
+}
+.method.selected{
+  border-color:var(--theme-accent);
+  background:rgba(184,115,51,.08);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+.btn-primary{
+  background:var(--theme-accent);
+  color:#fff;
+}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar .card{padding:28px}
+.sidebar h3{margin-bottom:10px}
+.total{
+  font-size:22px;
+  font-weight:700;
+  color:var(--copper-gold);
+}
+
+/* =========================
+   LOADER & MODAL
+========================= */
+.loader{display:none;text-align:center;padding:30px}
+.loader.active{display:block}
+.spinner{
+  width:36px;height:36px;
+  border:3px solid var(--border);
+  border-top-color:var(--theme-accent);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  margin:auto;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.modal-overlay{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.6);
+  align-items:center;justify-content:center;
+  z-index:1000;
+}
+.modal-overlay.active{display:flex}
+.modal{
+  background:#fff;
+  border-radius:18px;
+  padding:40px;
+  max-width:480px;width:100%;
+  text-align:center;
+}
+.transaction{
+  background:#F5F5F5;
+  padding:14px;
+  border-radius:8px;
+  font-family:monospace;
+  margin:18px 0;
+}
+
+@media(max-width:900px){
+  .main{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-  <div class="menu">
-    <button id="menuBtn">⋮</button>
-    <div id="dropdown" class="dropdown">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="founders-story.html">Founder’s Story</a>
-      <a href="programs.html">Programs</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="get-involved.html">Get Involved</a>
-      <a href="volunteer.html">Volunteer</a>
-      <a href="donate.html" class="active">Donate</a>
+<header>
+  <div class="logo">Second Start Initiative</div>
+</header>
+
+<section class="hero">
+  <h1>Support Our Mission</h1>
+  <p>Transparent • Secure • Impact-Driven</p>
+</section>
+
+<div class="main">
+
+<!-- PAYMENT -->
+<div class="card">
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="mobile">Mobile</button>
+    <button class="tab-btn" data-tab="card">Card</button>
+    <button class="tab-btn" data-tab="paypal">PayPal</button>
+    <button class="tab-btn" data-tab="bank">Bank</button>
+    <button class="tab-btn" data-tab="crypto">Crypto</button>
+  </div>
+
+  <div class="content">
+
+<!-- MOBILE -->
+<div class="panel active" data-panel="mobile">
+  <div class="alert">Instant mobile money payment</div>
+  <div class="methods">
+    <div class="method" data-provider="mpesa">M-Pesa</div>
+    <div class="method" data-provider="airtel">Airtel</div>
+    <div class="method" data-provider="mtn">MTN</div>
+  </div>
+
+  <form id="mobileForm">
+    <div class="grid section">
+      <div><label>Amount</label><input name="amount" required></div>
+      <div>
+        <label>Currency</label>
+        <select name="currency">
+          <option>KES</option><option>USD</option><option>EUR</option>
+        </select>
+      </div>
     </div>
-  </div>
+    <div class="section"><label>Phone</label><input name="phone" required></div>
+    <div class="section"><label>Email</label><input type="email" name="email" required></div>
+    <button class="btn btn-primary">Send Request</button>
+  </form>
+</div>
+
+<!-- CARD -->
+<div class="panel" data-panel="card">
+  <div class="alert">Secure card payment</div>
+  <form id="cardForm">
+    <div class="section"><label>Amount (USD)</label><input name="amount" required></div>
+    <div class="section"><label>Card Number</label><input required></div>
+    <div class="grid section">
+      <div><label>Expiry</label><input required></div>
+      <div><label>CVV</label><input required></div>
     </div>
-  </div>
-</nav>
+    <div class="section"><label>Email</label><input type="email" required></div>
+    <button class="btn btn-primary">Pay</button>
+  </form>
+</div>
 
-<main>
-  <h1>Support Second Start Initiative</h1>
-  <p style="text-align:center; max-width:700px; margin:auto;">Your donation helps young adults transitioning out of care to build independent, fulfilling lives. Each contribution makes a real difference.</p>
-
-  <!-- PayPal Section -->
-  <div class="section">
-    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal Logo">
-    <div>
-      <h2>Donate with PayPal</h2>
-      <p>Click below to donate securely using PayPal.</p>
-      <button id="paypalBtn" class="btn btn-paypal">Donate via PayPal</button>
+<!-- PAYPAL -->
+<div class="panel" data-panel="paypal">
+  <div class="alert">Pay securely using PayPal</div>
+  <form id="paypalForm">
+    <div class="section"><label>Amount</label><input name="amount" required></div>
+    <div class="section">
+      <label>Currency</label>
+      <select><option>USD</option><option>EUR</option></select>
     </div>
-  </div>
+    <button class="btn btn-primary">Continue to PayPal</button>
+  </form>
+</div>
 
-  <!-- M-Pesa Section -->
-  <div class="section">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/M-PESA_logo.png" alt="M-Pesa Logo">
-    <div>
-      <h2>Donate via M-Pesa</h2>
-      <p>Enter your phone number and amount to donate via M-Pesa.</p>
-      <input type="text" id="mpesaPhone" placeholder="Enter phone number (e.g. 2547XXXXXXXX)">
-      <input type="number" id="mpesaAmount" placeholder="Amount (KES)">
-      <button class="btn btn-mpesa" id="mpesaBtn">Donate via M-Pesa</button>
+<!-- BANK -->
+<div class="panel" data-panel="bank">
+  <div class="alert">Manual bank transfer</div>
+  <form id="bankForm">
+    <div class="grid section">
+      <div><label>Amount</label><input required></div>
+      <div><label>Currency</label><select><option>USD</option><option>EUR</option></select></div>
     </div>
-  </div>
-</main>
+    <div class="section"><label>Email</label><input type="email" required></div>
+    <button class="btn btn-primary">Get Instructions</button>
+  </form>
+</div>
 
-<footer>
-  <div style="margin-bottom:0.8rem;">
-    <strong>Second Start Initiative</strong> — Kenya
-  </div>
-
-  <div style="margin-bottom:0.8rem;">
-    <a href="https://wa.me/254701401306" target="_blank" rel="noopener">WhatsApp: +254 701 401 306</a> |
-    <a href="mailto:second.start.initiative@gmail.com">second.start.initiative@gmail.com</a>
-  </div>
-
-  <div style="margin-bottom:0.8rem;">
-    <a href="#" target="_blank">Instagram</a> ·
-    <a href="#" target="_blank">X (Twitter)</a> ·
-    <a href="#" target="_blank">Facebook</a>
-    <span style="opacity:0.8;">(@secondstartinitiative)</span>
+<!-- CRYPTO -->
+<div class="panel" data-panel="crypto">
+  <div class="alert">Pay directly from your crypto wallet</div>
+  <div class="methods">
+    <div class="method" data-crypto="BTC">Bitcoin</div>
+    <div class="method" data-crypto="ETH">Ethereum</div>
+    <div class="method" data-crypto="USDT">USDT</div>
   </div>
 
-  <div style="font-size:0.75rem; opacity:0.7;">
-    © 2025 Second Start Initiative • Built with purpose
-  </div>
-</footer>
+  <form id="cryptoForm">
+    <div class="section"><label>Amount (USD)</label><input required></div>
+    <div class="section"><label>Email</label><input type="email" required></div>
+    <button class="btn btn-primary">Generate Address</button>
+  </form>
 
+  <div class="section" id="cryptoBox" style="display:none">
+    <div class="transaction" id="cryptoAddress">0x0000…0000</div>
+    <p style="font-size:13px;color:var(--amber-grey)">
+      Send funds from your wallet and wait for confirmation
+    </p>
+  </div>
+</div>
+
+<div class="loader"><div class="spinner"></div><p>Processing…</p></div>
+
+</div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="card">
+    <h3>Why Donate?</h3>
+    <p class="total">Every amount matters</p>
+  </div>
+</aside>
+
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <h2>Payment Initiated</h2>
+    <div class="transaction" id="refBox"></div>
+    <button class="btn btn-primary" onclick="closeModal()">Done</button>
+  </div>
+</div>
 
 <script>
-  // Dropdown menu
-  const menuBtn = document.getElementById("menuBtn");
-  const dropdown = document.getElementById("dropdown");
-  menuBtn.addEventListener("click",()=>{dropdown.classList.toggle("show");});
+const State={provider:null,crypto:null};
 
-  // M-Pesa donation
-  const mpesaBtn = document.getElementById("mpesaBtn");
-  mpesaBtn.addEventListener("click", async () => {
-    const phone = document.getElementById("mpesaPhone").value.trim();
-    const amount = document.getElementById("mpesaAmount").value.trim();
-    if(!phone || !amount){alert("Enter phone & amount"); return;}
-    try{
-      const res = await fetch('http://localhost:5000/mpesa/stkpush', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ phone, amount })
-      });
-      const data = await res.json();
-      alert('STK Push sent! Check your phone.');
-      console.log('M-Pesa response:', data);
-    } catch(err){
-      console.error(err);
-      alert('Failed to send STK Push.');
-    }
-  });
+const COLORS={
+  mpesa:'#1DB954',airtel:'#E40000',mtn:'#FFD100',
+  BTC:'#F7931A',ETH:'#3C3C3D',USDT:'#26A17B',
+  paypal:'#003087'
+};
 
-  // PayPal donation
-  const paypalBtn = document.getElementById("paypalBtn");
-  paypalBtn.addEventListener("click", async () => {
-    const amount = prompt("Enter donation amount in USD:");
-    if(!amount) return;
+const genRef=()=>`SSI-${Date.now()}-${Math.floor(Math.random()*1e5)}`;
 
-    try{
-      const res = await fetch('http://localhost:5000/paypal/create-order', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ amount })
-      });
-      const data = await res.json();
-      // Capture order
-      const capture = await fetch('http://localhost:5000/paypal/capture-order', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ orderID: data.id })
-      });
-      const captureData = await capture.json();
-      alert('Thank you for your donation via PayPal!');
-      console.log('PayPal capture:', captureData);
-    } catch(err){
-      console.error(err);
-      alert('PayPal donation failed.');
-    }
-  });
+function theme(c){document.documentElement.style.setProperty('--theme-accent',c)}
+
+document.querySelectorAll('.tab-btn').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('.tab-btn,.panel').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.querySelector(`[data-panel="${b.dataset.tab}"]`).classList.add('active');
+    theme('var(--copper-gold)');
+  };
+});
+
+document.querySelectorAll('[data-provider]').forEach(m=>{
+  m.onclick=()=>{
+    document.querySelectorAll('[data-provider]').forEach(x=>x.classList.remove('selected'));
+    m.classList.add('selected');
+    State.provider=m.dataset.provider;
+    theme(COLORS[State.provider]);
+  };
+});
+
+document.querySelectorAll('[data-crypto]').forEach(m=>{
+  m.onclick=()=>{
+    document.querySelectorAll('[data-crypto]').forEach(x=>x.classList.remove('selected'));
+    m.classList.add('selected');
+    State.crypto=m.dataset.crypto;
+    theme(COLORS[State.crypto]);
+  };
+});
+
+function simulate(){
+  document.querySelector('.loader').classList.add('active');
+  setTimeout(()=>{
+    document.querySelector('.loader').classList.remove('active');
+    refBox.textContent=genRef();
+    successModal.classList.add('active');
+  },1500);
+}
+
+mobileForm.onsubmit=e=>{e.preventDefault();if(!State.provider)return alert('Select provider');simulate()};
+cardForm.onsubmit=e=>{e.preventDefault();simulate()};
+paypalForm.onsubmit=e=>{e.preventDefault();theme(COLORS.paypal);simulate()};
+bankForm.onsubmit=e=>{e.preventDefault();simulate()};
+cryptoForm.onsubmit=e=>{
+  e.preventDefault();
+  if(!State.crypto)return alert('Select crypto');
+  cryptoBox.style.display='block';
+  cryptoAddress.textContent='0xA3F9…B72C';
+};
+
+function closeModal(){successModal.classList.remove('active')}
 </script>
 
 </body>
