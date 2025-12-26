@@ -6,42 +6,48 @@
 <title>Donate | Second Start Initiative</title>
 
 <style>
-/* =========================
-   THEME SYSTEM
-========================= */
+/* ================= THEME ================= */
 :root{
   --amber-grey:#6E6E6E;
-  --ivory-coast:#FAF9F6;
-  --crimson-wine:#7A1E2D;
+  --ivory:#FAF9F6;
+  --crimson:#7A1E2D;
   --orange-lime:#C97B00;
   --copper-gold:#B87333;
-
-  --theme-accent:var(--copper-gold);
-  --border:#E3E3E3;
+  --accent:var(--copper-gold);
+  --border:#E2E2E2;
   --text:#2B2B2B;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 body{
   font-family:Inter,system-ui,sans-serif;
-  background:var(--ivory-coast);
+  background:var(--ivory);
   color:var(--text);
   line-height:1.6;
 }
 
-/* =========================
-   LAYOUT
-========================= */
+/* ================= HEADER ================= */
 header{
   background:#fff;
-  padding:24px;
   border-bottom:1px solid var(--border);
+  padding:20px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 .logo{
-  font-size:22px;
   font-weight:700;
+  font-size:22px;
   color:var(--copper-gold);
 }
+.typing-box{
+  font-size:14px;
+  color:var(--amber-grey);
+  min-height:20px;
+  font-weight:500;
+}
+
+/* ================= HERO ================= */
 .hero{
   background:linear-gradient(135deg,var(--amber-grey),var(--copper-gold));
   color:#fff;
@@ -50,6 +56,7 @@ header{
 }
 .hero h1{font-size:44px;margin-bottom:10px}
 
+/* ================= LAYOUT ================= */
 .main{
   max-width:1200px;
   margin:70px auto;
@@ -58,7 +65,6 @@ header{
   gap:40px;
   padding:0 24px;
 }
-
 .card{
   background:#fff;
   border-radius:18px;
@@ -66,9 +72,17 @@ header{
   overflow:hidden;
 }
 
-/* =========================
-   TABS
-========================= */
+/* ================= PROGRESS ================= */
+.progress{
+  display:flex;
+  justify-content:space-between;
+  padding:18px 28px;
+  background:#FAFAFA;
+  font-size:13px;
+}
+.progress span.active{color:var(--accent);font-weight:600}
+
+/* ================= TABS ================= */
 .tabs{
   display:flex;
   border-bottom:1px solid var(--border);
@@ -76,36 +90,33 @@ header{
 .tab-btn{
   flex:1;
   padding:16px;
-  background:none;
   border:none;
+  background:none;
   cursor:pointer;
   font-weight:600;
   color:var(--amber-grey);
 }
 .tab-btn.active{
-  color:var(--theme-accent);
-  border-bottom:3px solid var(--theme-accent);
+  color:var(--accent);
+  border-bottom:3px solid var(--accent);
 }
 
-/* =========================
-   CONTENT
-========================= */
+/* ================= CONTENT ================= */
 .content{padding:36px}
 .panel{display:none}
 .panel.active{display:block}
 
 .alert{
-  background:#F1EFEA;
-  border-left:4px solid var(--theme-accent);
+  background:#F3F1EC;
+  border-left:4px solid var(--accent);
   padding:14px;
   border-radius:8px;
   font-size:14px;
   margin-bottom:24px;
 }
 
-.section{margin-bottom:28px}
-label{font-size:14px;font-weight:500;display:block;margin-bottom:6px}
-
+.section{margin-bottom:26px}
+label{font-size:14px;font-weight:500;margin-bottom:6px;display:block}
 input,select{
   width:100%;
   padding:12px 14px;
@@ -115,36 +126,56 @@ input,select{
 }
 input:focus,select:focus{
   outline:none;
-  border-color:var(--theme-accent);
+  border-color:var(--accent);
   box-shadow:0 0 0 3px rgba(184,115,51,.15);
 }
-
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 
-/* =========================
-   METHOD CARDS
-========================= */
+/* ================= PRESETS ================= */
+.presets{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
+  gap:10px;
+}
+.preset{
+  padding:10px;
+  border:2px solid var(--border);
+  border-radius:8px;
+  text-align:center;
+  cursor:pointer;
+}
+.preset.active{
+  border-color:var(--accent);
+  background:rgba(184,115,51,.08);
+}
+
+/* ================= TOGGLES ================= */
+.toggle{
+  display:flex;
+  gap:10px;
+  font-size:14px;
+}
+.toggle input{width:auto}
+
+/* ================= METHODS ================= */
 .methods{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
   gap:14px;
 }
 .method{
-  padding:18px;
+  padding:16px;
   border:2px solid var(--border);
   border-radius:10px;
   text-align:center;
   cursor:pointer;
-  font-weight:600;
 }
 .method.selected{
-  border-color:var(--theme-accent);
+  border-color:var(--accent);
   background:rgba(184,115,51,.08);
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* ================= BUTTON ================= */
 .btn{
   width:100%;
   padding:14px;
@@ -155,31 +186,32 @@ input:focus,select:focus{
   cursor:pointer;
 }
 .btn-primary{
-  background:var(--theme-accent);
+  background:var(--accent);
   color:#fff;
 }
 .btn-primary:disabled{opacity:.5;cursor:not-allowed}
 
-/* =========================
-   SIDEBAR
-========================= */
+/* ================= SIDEBAR ================= */
 .sidebar .card{padding:28px}
-.sidebar h3{margin-bottom:10px}
-.total{
-  font-size:22px;
-  font-weight:700;
-  color:var(--copper-gold);
+.impact{
+  font-size:14px;
+  margin-top:10px;
+  color:var(--amber-grey);
+}
+.badges{
+  display:flex;
+  gap:10px;
+  margin-top:16px;
+  font-size:13px;
 }
 
-/* =========================
-   LOADER & MODAL
-========================= */
+/* ================= LOADER & MODAL ================= */
 .loader{display:none;text-align:center;padding:30px}
 .loader.active{display:block}
 .spinner{
   width:36px;height:36px;
   border:3px solid var(--border);
-  border-top-color:var(--theme-accent);
+  border-top-color:var(--accent);
   border-radius:50%;
   animation:spin .8s linear infinite;
   margin:auto;
@@ -219,17 +251,23 @@ input:focus,select:focus{
 
 <header>
   <div class="logo">Second Start Initiative</div>
+  <div class="typing-box" id="typing"></div>
 </header>
 
 <section class="hero">
   <h1>Support Our Mission</h1>
-  <p>Transparent • Secure • Impact-Driven</p>
+  <p>Every contribution creates real impact</p>
 </section>
 
 <div class="main">
 
-<!-- PAYMENT -->
 <div class="card">
+  <div class="progress">
+    <span class="active">Details</span>
+    <span>Payment</span>
+    <span>Confirmation</span>
+  </div>
+
   <div class="tabs">
     <button class="tab-btn active" data-tab="mobile">Mobile</button>
     <button class="tab-btn" data-tab="card">Card</button>
@@ -240,6 +278,33 @@ input:focus,select:focus{
 
   <div class="content">
 
+<!-- AMOUNT SECTION -->
+<div class="section">
+  <label>Choose Amount</label>
+  <div class="presets">
+    <div class="preset">10</div>
+    <div class="preset">25</div>
+    <div class="preset">50</div>
+    <div class="preset">100</div>
+  </div>
+</div>
+
+<div class="section grid">
+  <div><input id="amount" placeholder="Custom amount"></div>
+  <div>
+    <select id="currency">
+      <option>KES</option>
+      <option>USD</option>
+      <option>EUR</option>
+    </select>
+  </div>
+</div>
+
+<div class="toggle section">
+  <label><input type="checkbox" id="monthly"> Monthly donation</label>
+  <label><input type="checkbox" id="anonymous"> Donate anonymously</label>
+</div>
+
 <!-- MOBILE -->
 <div class="panel active" data-panel="mobile">
   <div class="alert">Instant mobile money payment</div>
@@ -248,172 +313,152 @@ input:focus,select:focus{
     <div class="method" data-provider="airtel">Airtel</div>
     <div class="method" data-provider="mtn">MTN</div>
   </div>
-
-  <form id="mobileForm">
-    <div class="grid section">
-      <div><label>Amount</label><input name="amount" required></div>
-      <div>
-        <label>Currency</label>
-        <select name="currency">
-          <option>KES</option><option>USD</option><option>EUR</option>
-        </select>
-      </div>
-    </div>
-    <div class="section"><label>Phone</label><input name="phone" required></div>
-    <div class="section"><label>Email</label><input type="email" name="email" required></div>
-    <button class="btn btn-primary">Send Request</button>
-  </form>
+  <div class="section"><input placeholder="Phone number"></div>
+  <div class="section"><input placeholder="Email"></div>
+  <button class="btn btn-primary" onclick="pay()">Send Request</button>
 </div>
 
 <!-- CARD -->
 <div class="panel" data-panel="card">
   <div class="alert">Secure card payment</div>
-  <form id="cardForm">
-    <div class="section"><label>Amount (USD)</label><input name="amount" required></div>
-    <div class="section"><label>Card Number</label><input required></div>
-    <div class="grid section">
-      <div><label>Expiry</label><input required></div>
-      <div><label>CVV</label><input required></div>
-    </div>
-    <div class="section"><label>Email</label><input type="email" required></div>
-    <button class="btn btn-primary">Pay</button>
-  </form>
+  <input placeholder="Card Number">
+  <div class="grid section">
+    <input placeholder="MM/YY">
+    <input placeholder="CVV">
+  </div>
+  <input placeholder="Email">
+  <button class="btn btn-primary" onclick="pay()">Pay</button>
 </div>
 
 <!-- PAYPAL -->
 <div class="panel" data-panel="paypal">
-  <div class="alert">Pay securely using PayPal</div>
-  <form id="paypalForm">
-    <div class="section"><label>Amount</label><input name="amount" required></div>
-    <div class="section">
-      <label>Currency</label>
-      <select><option>USD</option><option>EUR</option></select>
-    </div>
-    <button class="btn btn-primary">Continue to PayPal</button>
-  </form>
+  <div class="alert">Pay securely with PayPal</div>
+  <button class="btn btn-primary" onclick="pay()">Continue to PayPal</button>
 </div>
 
 <!-- BANK -->
 <div class="panel" data-panel="bank">
   <div class="alert">Manual bank transfer</div>
-  <form id="bankForm">
-    <div class="grid section">
-      <div><label>Amount</label><input required></div>
-      <div><label>Currency</label><select><option>USD</option><option>EUR</option></select></div>
-    </div>
-    <div class="section"><label>Email</label><input type="email" required></div>
-    <button class="btn btn-primary">Get Instructions</button>
-  </form>
+  <input placeholder="Email">
+  <button class="btn btn-primary" onclick="pay()">Get Instructions</button>
 </div>
 
 <!-- CRYPTO -->
 <div class="panel" data-panel="crypto">
-  <div class="alert">Pay directly from your crypto wallet</div>
+  <div class="alert">Pay from your crypto wallet</div>
   <div class="methods">
     <div class="method" data-crypto="BTC">Bitcoin</div>
     <div class="method" data-crypto="ETH">Ethereum</div>
     <div class="method" data-crypto="USDT">USDT</div>
   </div>
-
-  <form id="cryptoForm">
-    <div class="section"><label>Amount (USD)</label><input required></div>
-    <div class="section"><label>Email</label><input type="email" required></div>
-    <button class="btn btn-primary">Generate Address</button>
-  </form>
-
-  <div class="section" id="cryptoBox" style="display:none">
-    <div class="transaction" id="cryptoAddress">0x0000…0000</div>
-    <p style="font-size:13px;color:var(--amber-grey)">
-      Send funds from your wallet and wait for confirmation
-    </p>
-  </div>
+  <button class="btn btn-primary" onclick="cryptoPay()">Generate Address</button>
+  <div class="transaction" id="cryptoAddress" style="display:none">0xA3F9…B72C</div>
 </div>
 
-<div class="loader"><div class="spinner"></div><p>Processing…</p></div>
+<div class="loader"><div class="spinner"></div></div>
 
 </div>
 </div>
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="card">
-    <h3>Why Donate?</h3>
-    <p class="total">Every amount matters</p>
+    <h3>Your Impact</h3>
+    <div class="impact" id="impactText">
+      A small donation can change a life.
+    </div>
+    <div class="badges">
+      🔒 Secure
+      🌍 Transparent
+      📜 Receipt
+    </div>
   </div>
 </aside>
 
 </div>
 
 <!-- SUCCESS MODAL -->
-<div class="modal-overlay" id="successModal">
+<div class="modal-overlay" id="success">
   <div class="modal">
-    <h2>Payment Initiated</h2>
-    <div class="transaction" id="refBox"></div>
+    <h2>Thank You</h2>
+    <div class="transaction" id="ref"></div>
     <button class="btn btn-primary" onclick="closeModal()">Done</button>
   </div>
 </div>
 
 <script>
-const State={provider:null,crypto:null};
-
+/* ================= STATE ================= */
+let state={provider:null,crypto:null};
 const COLORS={
   mpesa:'#1DB954',airtel:'#E40000',mtn:'#FFD100',
   BTC:'#F7931A',ETH:'#3C3C3D',USDT:'#26A17B',
   paypal:'#003087'
 };
+const messages=[
+  "Why donate? Because every life matters.",
+  "Your generosity fuels education and hope.",
+  "Small acts create lasting change.",
+  "Together, we rebuild futures.",
+  "Your support reaches real people."
+];
 
-const genRef=()=>`SSI-${Date.now()}-${Math.floor(Math.random()*1e5)}`;
+/* ================= TYPING ================= */
+let i=0,j=0,el=document.getElementById('typing');
+setInterval(()=>{
+  el.textContent=messages[i].slice(0,j++);
+  if(j>messages[i].length){setTimeout(()=>{j=0;i=(i+1)%messages.length},1500)}
+},120);
 
-function theme(c){document.documentElement.style.setProperty('--theme-accent',c)}
-
+/* ================= UI ================= */
 document.querySelectorAll('.tab-btn').forEach(b=>{
   b.onclick=()=>{
     document.querySelectorAll('.tab-btn,.panel').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
     document.querySelector(`[data-panel="${b.dataset.tab}"]`).classList.add('active');
-    theme('var(--copper-gold)');
+    document.documentElement.style.setProperty('--accent','var(--copper-gold)');
   };
 });
 
-document.querySelectorAll('[data-provider]').forEach(m=>{
+document.querySelectorAll('.method').forEach(m=>{
   m.onclick=()=>{
-    document.querySelectorAll('[data-provider]').forEach(x=>x.classList.remove('selected'));
+    document.querySelectorAll('.method').forEach(x=>x.classList.remove('selected'));
     m.classList.add('selected');
-    State.provider=m.dataset.provider;
-    theme(COLORS[State.provider]);
+    state.provider=m.dataset.provider;
+    state.crypto=m.dataset.crypto;
+    document.documentElement.style.setProperty('--accent',COLORS[state.provider||state.crypto]);
   };
 });
 
-document.querySelectorAll('[data-crypto]').forEach(m=>{
-  m.onclick=()=>{
-    document.querySelectorAll('[data-crypto]').forEach(x=>x.classList.remove('selected'));
-    m.classList.add('selected');
-    State.crypto=m.dataset.crypto;
-    theme(COLORS[State.crypto]);
+document.querySelectorAll('.preset').forEach(p=>{
+  p.onclick=()=>{
+    document.querySelectorAll('.preset').forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    amount.value=p.textContent;
+    updateImpact();
   };
 });
 
-function simulate(){
+amount.oninput=updateImpact;
+function updateImpact(){
+  const a=Number(amount.value||0);
+  impactText.textContent=
+    a>=100?"Funds a full community program":
+    a>=50?"Supports a training workshop":
+    a>=25?"Provides learning materials":
+    "Every contribution helps";
+}
+
+function pay(){
   document.querySelector('.loader').classList.add('active');
   setTimeout(()=>{
     document.querySelector('.loader').classList.remove('active');
-    refBox.textContent=genRef();
-    successModal.classList.add('active');
+    ref.textContent="SSI-"+Date.now();
+    success.classList.add('active');
   },1500);
 }
-
-mobileForm.onsubmit=e=>{e.preventDefault();if(!State.provider)return alert('Select provider');simulate()};
-cardForm.onsubmit=e=>{e.preventDefault();simulate()};
-paypalForm.onsubmit=e=>{e.preventDefault();theme(COLORS.paypal);simulate()};
-bankForm.onsubmit=e=>{e.preventDefault();simulate()};
-cryptoForm.onsubmit=e=>{
-  e.preventDefault();
-  if(!State.crypto)return alert('Select crypto');
-  cryptoBox.style.display='block';
-  cryptoAddress.textContent='0xA3F9…B72C';
-};
-
-function closeModal(){successModal.classList.remove('active')}
+function cryptoPay(){
+  cryptoAddress.style.display='block';
+}
+function closeModal(){success.classList.remove('active')}
 </script>
 
 </body>
