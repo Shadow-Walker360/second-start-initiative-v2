@@ -14,7 +14,7 @@ const security = require('./config/security');
 const routes = require('./routes');
 const logger = require('./utils/logger');
 
-const app = express();
+
 
 // Security
 security(app);
@@ -48,4 +48,70 @@ app.use((err, req, res, next) => {
   });
 })();
 
+/**
+ * Application Bootstrap
+ * ---------------------
+ * Starts server, jobs, and background workers
+ */
+
+const express = require('express');
+const cron = require('node-cron');
+const connectDB = require('./config/database');
+const routes = require('./routes');
+const logger = require('./utils/logger');
+
+// Jobs
+const cryptoWatcherJob = require('./jobs/crypto-watcher.job');
+const receiptSenderJob = require('./jobs/receipt-sender.job');
+const reconciliationJob = require('./jobs/reconciliation.job');
+
+const app = express();
+
+// Core middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Routes
+app.use('/api', routes);
+
+// Database
+connectDB();
+
+// ---- BACKGROUND JOBS ----
+if (process.env.ENABLE_JOBS === 'true') {
+  logger.info('Background jobs enabled');
+
+  // Crypto watcher (every 2 minutes)
+  cron.schedule('*/2 * * * *', async () => {
+    try {
+      await cryptoWatcherJob.run();
+    } catch (err) {
+      logger.error('Crypto watcher failed', err);
+    }
+  });
+
+  // Receipt sender (every 5 minutes)
+  cron.schedule('*/5 * * * *', async () => {
+    try {
+      await receiptSenderJob.run();
+    } catch (err) {
+      logger.error('Receipt sender failed', err);
+    }
+  });
+
+  // Reconciliation (every night at 02:00)
+  cron.schedule('0 2 * * *', async () => {
+    try {
+      await reconciliationJob.run();
+    } catch (err) {
+      logger.error('Reconciliation failed', err);
+    }
+  });
+}
+
+const helmet = require('helmet');
+app.use(helmet());
+
+
 module.exports = app;
+

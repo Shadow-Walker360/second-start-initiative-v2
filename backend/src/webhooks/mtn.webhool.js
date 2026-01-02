@@ -1,17 +1,27 @@
 /**
- * MTN Webhook
+ * MTN Mobile Money Webhook
+ * -----------------------
+ * Payment confirmation handler
  */
 
 const paymentService = require('../services/payment.service');
 const donationService = require('../services/donation.service');
 
 exports.handleWebhook = async (req, res) => {
-  const { status, payment, donation } = req.body;
+  const { status, referenceId } = req.body;
 
-  if (status !== 'SUCCESSFUL') return res.sendStatus(200);
+  if (!referenceId) {
+    return res.sendStatus(400);
+  }
 
-  await paymentService.markConfirmed(payment);
-  await donationService.markCompleted(donation);
+  if (status === 'SUCCESSFUL') {
+    await paymentService.markConfirmed(referenceId);
+    await donationService.markCompleted(referenceId);
+  }
+
+  if (status === 'FAILED') {
+    await paymentService.markFailed(referenceId, 'MTN payment failed');
+  }
 
   res.sendStatus(200);
 };

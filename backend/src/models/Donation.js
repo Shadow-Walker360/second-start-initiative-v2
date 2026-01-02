@@ -1,62 +1,41 @@
 /**
  * Donation Model
  * --------------
- * Represents a donation intent.
+ * Links payments to donors and causes
  */
 
 const mongoose = require('mongoose');
 
 const DonationSchema = new mongoose.Schema(
   {
-    amount: {
-      type: Number,
+    donor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: false,
+    },
+
+    payment: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Payment',
       required: true,
-      min: 1,
     },
 
-    currency: {
-      type: String,
-      required: true,
-      uppercase: true,
-      enum: ['USD', 'EUR', 'KES'],
-    },
-
-    donorName: {
-      type: String,
-      trim: true,
-      default: 'Anonymous',
-    },
-
-    donorEmail: {
-      type: String,
-      lowercase: true,
-      trim: true,
-      default: null,
-    },
-
-    message: {
-      type: String,
-      trim: true,
-      maxlength: 500,
-      default: null,
-    },
+    amount: { type: Number, required: true },
+    currency: { type: String, required: true },
 
     status: {
       type: String,
-      enum: ['pending', 'completed', 'failed'],
+      enum: ['pending', 'completed', 'cancelled'],
       default: 'pending',
-      index: true,
     },
-  },
-  {
-    timestamps: true,
-  }
-);
 
-/* ===========================
-   INDEXES
-   =========================== */
-DonationSchema.index({ createdAt: -1 });
-DonationSchema.index({ status: 1 });
+    isAnonymous: { type: Boolean, default: false },
+
+    message: { type: String },
+
+    completedAt: { type: Date },
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model('Donation', DonationSchema);

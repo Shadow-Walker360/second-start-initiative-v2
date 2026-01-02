@@ -1,28 +1,19 @@
 /**
- * Rate Limit Middleware
- * ---------------------
- * Applies request rate limiting per IP.
+ * Rate Limiter Middleware
+ * ----------------------
  */
 
 const rateLimit = require('express-rate-limit');
-const security = require('../config/security');
 
-exports.publicLimiter = rateLimit({
-  windowMs: security.rateLimit.windowMs,
-  max: security.rateLimit.maxRequests,
+exports.apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 300,
   standardHeaders: true,
   legacyHeaders: false,
-  message: {
-    error: 'Too many requests, please slow down',
-  },
 });
 
-exports.strictLimiter = rateLimit({
-  windowMs: security.rateLimit.windowMs,
-  max: Math.floor(security.rateLimit.maxRequests / 4),
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    error: 'Too many attempts, please try again later',
-  },
+exports.paymentLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 50,
+  message: 'Too many payment attempts. Try again later.',
 });

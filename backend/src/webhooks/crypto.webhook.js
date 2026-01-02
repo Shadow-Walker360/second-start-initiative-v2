@@ -1,17 +1,19 @@
 /**
  * Crypto Webhook
+ * --------------
+ * Exchange-based confirmations
  */
 
 const paymentService = require('../services/payment.service');
-const donationService = require('../services/donation.service');
 
 exports.handleWebhook = async (req, res) => {
-  const { txConfirmed, payment, donation } = req.body;
+  const { reference, txHash, confirmed } = req.body;
 
-  if (!txConfirmed) return res.sendStatus(200);
+  if (!reference) return res.sendStatus(400);
 
-  await paymentService.markConfirmed(payment);
-  await donationService.markCompleted(donation);
+  if (confirmed === true) {
+    await paymentService.markConfirmed(reference, txHash);
+  }
 
   res.sendStatus(200);
 };

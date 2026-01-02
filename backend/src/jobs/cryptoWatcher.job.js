@@ -1,29 +1,47 @@
 /**
  * Crypto Watcher Job
+ * ------------------
+ * Confirms on-chain payments
  */
 
-const Payment = require('../models/Payment');
+const cryptoUtils = require('../utils/crypto');
+const cryptoConstants = require('../constants/crypto.constants');
 const paymentService = require('../services/payment.service');
 const donationService = require('../services/donation.service');
-const logger = require('../utils/logger');
 
-module.exports = async () => {
-  const pending = await Payment.find({
-    method: 'CRYPTO',
-    status: 'PENDING_CONFIRMATION',
-  });
+exports.run = async () => {
+  const pendingPayments = await paymentService.getPendingCryptoPayments();
 
-  for (const payment of pending) {
-    try {
-      // In real life: check blockchain explorer
-      const confirmed = true;
+  for (const payment of pendingPayments) {
+    const wallet = cryptoConstants.WALLETS[payment.currency];
 
-      if (confirmed) {
-        await paymentService.markConfirmed(payment);
-        await donationService.markCompleted(payment.donation);
+    if (payment.currency === 'ETH' || payment.currency === 'USDT') {
+      const txs = await cryptoUtils.fetchEthTransactions(wallet.address);
+
+      const match = txs.find(
+        (tx) =>
+          tx.value === payment.amount &&
+          tx.confirmations >= wallet.confirmationsRequired
+      );
+
+      if (match) {
+        await paymentService.markConfirmed(payment.providerReference, match.hash);
+        await donationService.markCompleted(payment.providerReference);
       }
-    } catch (err) {
-      logger.error('Crypto watcher error', err);
+    }
+
+    if (payment.currency === 'BTC') {
+      const txs = await cryptoUtils.fetchBtcTransactions(wallet.address);
+
+      const match = txs.find(
+        (tx) =>
+          tx.confirmations >= wallet.confirmationsRequired
+      );
+
+      if (match) {
+        await paymentService.markConfirmed(payment.providerReference, match.hash);
+        await donationService.markCompleted(payment.providerReference);
+      }
     }
   }
 };

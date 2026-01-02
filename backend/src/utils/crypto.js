@@ -1,18 +1,31 @@
 /**
  * Crypto Utilities
  * ----------------
- * Safe helpers for crypto payment flows.
+ * Blockchain helpers
  */
 
-const crypto = require('crypto');
+const axios = require('axios');
 
-exports.generateHash = (value) => {
-  return crypto
-    .createHash('sha256')
-    .update(String(value))
-    .digest('hex');
+exports.fetchEthTransactions = async (address) => {
+  const response = await axios.get(
+    `https://api.etherscan.io/api`,
+    {
+      params: {
+        module: 'account',
+        action: 'txlist',
+        address,
+        sort: 'desc',
+        apikey: process.env.ETHERSCAN_API_KEY,
+      },
+    }
+  );
+
+  return response.data.result || [];
 };
 
-exports.generateSecureToken = (length = 32) => {
-  return crypto.randomBytes(length).toString('hex');
+exports.fetchBtcTransactions = async (address) => {
+  const response = await axios.get(
+    `https://blockchain.info/rawaddr/${address}`
+  );
+  return response.data.txs || [];
 };

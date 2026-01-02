@@ -1,24 +1,24 @@
 /**
  * Bank Transfer Service
  * ---------------------
+ * Generates transfer instructions
  */
 
+const crypto = require('crypto');
+const bankDetails = require('../constants/bank.constants');
+
 exports.initiatePayment = async ({ amount, currency }) => {
+  const reference = `BNK-${crypto.randomBytes(4).toString('hex').toUpperCase()}`;
+
   return {
     status: 'pending',
-    providerReference: `BANK-${Date.now()}`,
+    providerReference: reference,
     instructions: {
-      bankName: 'Example Bank',
-      accountName: 'Second Start Initiative',
-      accountNumber: '1234567890',
-      reference: `DON-${Date.now()}`,
+      ...bankDetails,
+      AMOUNT: amount,
+      CURRENCY: currency,
+      REFERENCE: reference,
+      NOTE: 'Use the reference exactly as shown',
     },
-  };
-};
-
-exports.verifyPayment = async ({ providerReference }) => {
-  return {
-    status: 'confirmed',
-    providerReference,
   };
 };
