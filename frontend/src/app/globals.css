@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* Self-hosted fonts (no external requests) */
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/500.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/fraunces/600-italic.css";
+@import "@fontsource/work-sans/400.css";
+@import "@fontsource/work-sans/500.css";
+@import "@fontsource/work-sans/600.css";
+
+:root {
+  /* Core palette — deep ink navy + sunrise marigold + quiet moss, on warm paper */
+  --ink: #101a2e;        /* primary dark — header, hero, footer */
+  --ink-soft: #24314d;   /* secondary dark surface */
+  --paper: #faf8f4;      /* main background */
+  --paper-dim: #f1ede4;  /* alternate section background */
+  --marigold: #e8a333;   /* primary accent — CTAs, highlights */
+  --marigold-deep: #c8811f;
+  --moss: #3c6659;       /* secondary accent — tags, icons */
+  --ink-line: rgba(16, 26, 46, 0.12);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-marigold: var(--marigold);
+  --color-marigold-deep: var(--marigold-deep);
+  --color-moss: var(--moss);
+  --color-ink-line: var(--ink-line);
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  border-color: var(--ink-line);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--marigold-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
